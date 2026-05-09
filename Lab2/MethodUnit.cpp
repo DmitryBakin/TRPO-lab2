@@ -9,7 +9,8 @@ void MethodUnit::add(const std::shared_ptr<Unit>& unit, Flags /* flags */)
     m_body.push_back(unit);
 }
 
-std::string MethodUnit::compile(unsigned int level) const {  // Убрал = 0
+std::string MethodUnit::compile(unsigned int level) const
+{
     std::string result = generateShift(level);
     if (m_flags & STATIC) {
         result += "static ";

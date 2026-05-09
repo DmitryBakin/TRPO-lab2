@@ -33,3 +33,5 @@ std::string ClassUnit::compile(unsigned int level) const
     result += generateShift(level) + "};\n";
     return result;
 }
+
+

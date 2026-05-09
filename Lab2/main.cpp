@@ -17,8 +17,7 @@ std::string generateProgram()
         ClassUnit::PRIVATE
         );
     myClass.add(
-        std::make_shared< MethodUnit >( "testFunc3", "void", MethodUnit::VIRTUAL |
-                                                              MethodUnit::CONST ),
+        std::make_shared< MethodUnit >( "testFunc3", "void", MethodUnit::VIRTUAL | MethodUnit::CONST),
         ClassUnit::PUBLIC
         );
     auto method = std::make_shared< MethodUnit >( "testFunc4", "void",
