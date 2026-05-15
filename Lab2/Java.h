@@ -1,9 +1,6 @@
 #include "ILanguageFactory.h"
-#include "MethodUnit.h"
-#include "ClassUnit.h"
-#include "PrintOperatorUnit.h"
 
-class JavaUnit : public ILanguageFactory
+class JavaFactory : public ILanguageFactory
 {
 
 };

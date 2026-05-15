@@ -1,30 +1,29 @@
 #include <QCoreApplication>
 #include "iostream"
 
-#include "ClassUnit.h"
-#include "MethodUnit.h"
-#include "PrintOperatorUnit.h"
+#include "ILanguageFactory.h"
+#include "cpp.h"
 
-std::string generateProgram()
+std::string generateProgram(std::shared_ptr<ILanguageFactory> factory)
 {
-    ClassUnit myClass( "MyClass" );
-    myClass.add(
-        std::make_shared< MethodUnit >( "testFunc1", "void", 0 ),
-        ClassUnit::PUBLIC
-        );
-    myClass.add(
-        std::make_shared< MethodUnit >( "testFunc2", "void", MethodUnit::STATIC ),
-        ClassUnit::PRIVATE
-        );
-    myClass.add(
-        std::make_shared< MethodUnit >( "testFunc3", "void", MethodUnit::VIRTUAL | MethodUnit::CONST),
-        ClassUnit::PUBLIC
-        );
-    auto method = std::make_shared< MethodUnit >( "testFunc4", "void",
-                                               MethodUnit::STATIC );
-    method->add( std::make_shared< PrintOperatorUnit >( R"(Hello, world!\n)" ) );
-    myClass.add( method, ClassUnit::PROTECTED );
-    return myClass.compile();
+    auto myClass = factory->createClassUnit("MyClass");
+
+    // Создаём методы через фабрику
+    auto method1 = factory->createMethodUnit("testFunc1", "void", 0);
+    auto method2 = factory->createMethodUnit("testFunc2", "void", 1);
+    auto method3 = factory->createMethodUnit("testFunc3", "void", 4);
+    auto method4 = factory->createMethodUnit("testFunc4", "void", 1);
+
+    // Создаём оператор печати
+    auto printOp = factory->createPrintOperatorUnit("Hello, world!\\n");
+    method4->add(printOp);
+
+    myClass->add(method1, 0);
+    myClass->add(method2, 2);
+    myClass->add(method3, 0);
+    myClass->add(method4, 1);
+
+    return myClass->compile();
 }
 
 
@@ -32,7 +31,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    std::cout << generateProgram() << std::endl;
+    std::cout << generateProgram(std::make_shared<CppFactory>()) << std::endl;
     return 0;
 
 

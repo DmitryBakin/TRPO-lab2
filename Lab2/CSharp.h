@@ -1,9 +1,6 @@
 #include "ILanguageFactory.h"
-#include "MethodUnit.h"
-#include "ClassUnit.h"
-#include "PrintOperatorUnit.h"
 
-class CSharpUnit : public ILanguageFactory
+class CSharpFactory : public ILanguageFactory
 {
 
 };
