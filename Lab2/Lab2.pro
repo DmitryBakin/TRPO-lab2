@@ -8,13 +8,9 @@ CONFIG += c++17 cmdline
 
 SOURCES += \
         CSharp.cpp \
-        ClassUnit.cpp \
         Cpp.cpp \
         ILanguageFactory.cpp \
         Java.cpp \
-        MethodUnit.cpp \
-        PrintOperatorUnit.cpp \
-        Unit.cpp \
         main.cpp
 
 # Default rules for deployment.
@@ -24,10 +20,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     CSharp.h \
-    ClassUnit.h \
     Cpp.h \
     ILanguageFactory.h \
-    Java.h \
-    MethodUnit.h \
-    PrintOperatorUnit.h \
-    Unit.h
+    Java.h
