@@ -68,7 +68,7 @@ std::string CppPrintOperatorUnit::generateShift(unsigned int level) const {
 }
 
 std::string CppPrintOperatorUnit::compile(unsigned int level) const {
-    return generateShift(level) + "printf(\"" + m_text + "\");\n";
+    return generateShift(level) + "std::cout << \"" + m_text + "\" << std::endl;\n";
 }
 
 std::shared_ptr<IClassUnit> CppFactory::createClassUnit(const std::string& name)
