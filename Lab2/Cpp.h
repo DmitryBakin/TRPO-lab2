@@ -1,12 +1,13 @@
+#pragma once
 #include "ILanguageFactory.h"
 #include <vector>
 
 class CppClassUnit : public IClassUnit
 {
-    enum Access { PRIVATE, PROTECTED, PUBLIC };
+public:
     static const std::vector<std::string> ACCESS_MODIFIERS;
 
-public:
+    enum Access { PRIVATE, PROTECTED, PUBLIC };
 
     explicit CppClassUnit(const std::string& name);
 

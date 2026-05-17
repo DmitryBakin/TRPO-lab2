@@ -44,8 +44,10 @@ std::string CppMethodUnit::generateShift(unsigned int level) const {
 std::string CppMethodUnit::compile(unsigned int level) const {
     std::string result = generateShift(level);
 
-    if (m_flags & STATIC) result += "static ";
-    if (m_flags & VIRTUAL) result += "virtual ";
+    if (m_flags & STATIC)
+        result += "static ";
+    else if (m_flags & VIRTUAL)
+        result += "virtual ";
 
     result += m_returnType + " " + m_name + "()";
     if (m_flags & CONST) result += " const";
@@ -59,7 +61,6 @@ std::string CppMethodUnit::compile(unsigned int level) const {
     return result;
 }
 
-// CppPrintOperatorUnit
 CppPrintOperatorUnit::CppPrintOperatorUnit(const std::string& text) : m_text(text) {}
 
 
