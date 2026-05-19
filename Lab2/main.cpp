@@ -4,6 +4,7 @@
 #include "ILanguageFactory.h"
 #include "cpp.h"
 #include "Java.h"
+#include "CSharp.h"
 
 std::string generateProgram(std::shared_ptr<ILanguageFactory> factory)
 {
@@ -33,6 +34,8 @@ int main(int argc, char *argv[])
     std::cout << generateProgram(std::make_shared<CppFactory>()) << std::endl;
 
     std::cout << generateProgram(std::make_shared<JavaFactory>()) << std::endl;
+
+    std::cout << generateProgram(std::make_shared<CSharpFactory>()) << std::endl;
 
     return a.exec();
 }
