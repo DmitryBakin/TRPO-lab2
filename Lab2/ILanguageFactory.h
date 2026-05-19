@@ -6,28 +6,31 @@
 
 using Flags = unsigned int;
 
-class IUnit
+class Unit
 {
 public:
-    virtual ~IUnit() = default;
+    virtual ~Unit() = default;
     virtual std::string compile(unsigned int level = 0) const = 0;
+
+protected:
+    std::string generateShift(unsigned int level) const;
 };
 
-class IClassUnit : public IUnit
+class IClassUnit : public Unit
 {
 public:
     virtual ~IClassUnit() = default;
-    virtual void add(std::shared_ptr<IUnit> unit, Flags flags = 0) = 0;
+    virtual void add(std::shared_ptr<Unit> unit, Flags flags = 0) = 0;
 };
 
-class IMethodUnit : public IUnit
+class IMethodUnit : public Unit
 {
 public:
     virtual ~IMethodUnit() = default;
-    virtual void add(std::shared_ptr<IUnit> unit, Flags flags = 0) = 0;
+    virtual void add(std::shared_ptr<Unit> unit, Flags flags = 0) = 0;
 };
 
-class IPrintOperatorUnit : public IUnit {};
+class IPrintOperatorUnit : public Unit {};
 
 
 class ILanguageFactory {

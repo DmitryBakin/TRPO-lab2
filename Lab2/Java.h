@@ -10,29 +10,27 @@ public:
 
     explicit JavaClassUnit(const std::string& name);
 
-    void add(std::shared_ptr<IUnit> unit, Flags flags = 0) override;
+    void add(std::shared_ptr<Unit> unit, Flags flags = 0) override;
     std::string compile(unsigned int level = 0) const override;
 
 private:
     std::string m_name;
-    std::vector<std::vector<std::shared_ptr<IUnit>>> m_fields;
-    std::string generateShift(unsigned int level) const;
+    std::vector<std::vector<std::shared_ptr<Unit>>> m_fields;
 };
 
 class JavaMethodUnit : public IMethodUnit {
 public:
-    enum Modifier { STATIC = 1, FINAL = 2, ABSTRACT = 4};
+    enum Modifier { STATIC = 1, FINAL = 1 << 1, ABSTRACT = 1 << 2};
 
     JavaMethodUnit(const std::string& name, const std::string& returnType, Flags flags = 0);
 
-    void add(std::shared_ptr<IUnit> unit, Flags flags = 0) override;
+    void add(std::shared_ptr<Unit> unit, Flags flags = 0) override;
     std::string compile(unsigned int level = 0) const override;
 
 private:
     std::string m_name, m_returnType;
     Flags m_flags;
-    std::vector<std::shared_ptr<IUnit>> m_body;
-    std::string generateShift(unsigned int level) const;
+    std::vector<std::shared_ptr<Unit>> m_body;
 };
 
 class JavaPrintOperatorUnit : public IPrintOperatorUnit {
@@ -43,7 +41,6 @@ public:
 
 private:
     std::string m_text;
-    std::string generateShift(unsigned int level) const;
 };
 
 class JavaFactory : public ILanguageFactory {

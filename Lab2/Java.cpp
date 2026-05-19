@@ -7,7 +7,7 @@ JavaClassUnit::JavaClassUnit(const std::string& name) : m_name(name) {
     m_fields.resize(ACCESS_MODIFIERS.size());
 }
 
-void JavaClassUnit::add(std::shared_ptr<IUnit> unit, Flags flags) {
+void JavaClassUnit::add(std::shared_ptr<Unit> unit, Flags flags) {
     int access = PRIVATE;
     if (flags < m_fields.size()) access = flags;
     m_fields[access].push_back(unit);
@@ -32,14 +32,10 @@ std::string JavaClassUnit::compile(unsigned int level) const {
     return result;
 }
 
-std::string JavaClassUnit::generateShift(unsigned int level) const {
-    return std::string(level * 4, ' ');
-}
-
 JavaMethodUnit::JavaMethodUnit(const std::string& name, const std::string& returnType, Flags flags)
     : m_name(name), m_returnType(returnType), m_flags(flags) {}
 
-void JavaMethodUnit::add(std::shared_ptr<IUnit> unit, Flags) {
+void JavaMethodUnit::add(std::shared_ptr<Unit> unit, Flags) {
     m_body.push_back(unit);
 }
 
@@ -71,11 +67,6 @@ std::string JavaMethodUnit::compile(unsigned int level) const {
     return result;
 }
 
-std::string JavaMethodUnit::generateShift(unsigned int level) const
-{
-    return std::string(level * 4, ' ');
-}
-
 JavaPrintOperatorUnit::JavaPrintOperatorUnit(const std::string& text) : m_text(text) {}
 
 std::string JavaPrintOperatorUnit::compile(unsigned int level) const
@@ -83,10 +74,6 @@ std::string JavaPrintOperatorUnit::compile(unsigned int level) const
     return generateShift(level) + "System.out.println(\"" + m_text + "\");\n";
 }
 
-std::string JavaPrintOperatorUnit::generateShift(unsigned int level) const
-{
-    return std::string(level * 4, ' ');
-}
 
 std::shared_ptr<IClassUnit> JavaFactory::createClassUnit(const std::string& name)
 {

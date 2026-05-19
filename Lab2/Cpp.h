@@ -11,15 +11,12 @@ public:
 
     explicit CppClassUnit(const std::string& name);
 
-    void add(std::shared_ptr<IUnit> unit, Flags flags) override;
+    void add(std::shared_ptr<Unit> unit, Flags flags) override;
     std::string compile(unsigned int level = 0) const override;
 
 private:
-
     std::string m_name;
-    std::vector<std::vector<std::shared_ptr<IUnit>>> m_fields;
-    std::string generateShift(unsigned int level) const;
-
+    std::vector<std::vector<std::shared_ptr<Unit>>> m_fields;
 };
 
 class CppMethodUnit : public IMethodUnit
@@ -29,16 +26,14 @@ public:
 
     CppMethodUnit(const std::string& name, const std::string& returnType, Flags flags);
 
-    void add(std::shared_ptr<IUnit> unit, Flags flags = 0) override;
+    void add(std::shared_ptr<Unit> unit, Flags flags = 0) override;
     std::string compile(unsigned int level = 0) const override;
 
 private:
 
     std::string m_name, m_returnType;
     Flags m_flags;
-    std::vector<std::shared_ptr<IUnit>> m_body;
-    std::string generateShift(unsigned int level) const;
-
+    std::vector<std::shared_ptr<Unit>> m_body;
 };
 
 class CppPrintOperatorUnit : public IPrintOperatorUnit
@@ -50,10 +45,7 @@ public:
     std::string compile(unsigned int level = 0) const override;
 
 private:
-
     std::string m_text;
-    std::string generateShift(unsigned int level) const;
-
 };
 
 class CppFactory : public ILanguageFactory

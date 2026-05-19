@@ -6,7 +6,7 @@ CppClassUnit::CppClassUnit(const std::string& name) : m_name(name) {
     m_fields.resize(ACCESS_MODIFIERS.size());
 }
 
-void CppClassUnit::add(std::shared_ptr<IUnit> unit, Flags flags) {
+void CppClassUnit::add(std::shared_ptr<Unit> unit, Flags flags) {
     int access = PRIVATE;
     if (flags < m_fields.size()) access = flags;
     m_fields[access].push_back(unit);
@@ -25,20 +25,11 @@ std::string CppClassUnit::compile(unsigned int level) const {
     return result;
 }
 
-std::string CppClassUnit::generateShift(unsigned int level) const
-{
-    return std::string(level * 4, ' ');
-}
-
 CppMethodUnit::CppMethodUnit(const std::string& name, const std::string& returnType, Flags flags)
     : m_name(name), m_returnType(returnType), m_flags(flags) {}
 
-void CppMethodUnit::add(std::shared_ptr<IUnit> unit, Flags) {
+void CppMethodUnit::add(std::shared_ptr<Unit> unit, Flags) {
     m_body.push_back(unit);
-}
-
-std::string CppMethodUnit::generateShift(unsigned int level) const {
-    return std::string(level * 4, ' ');
 }
 
 std::string CppMethodUnit::compile(unsigned int level) const {
@@ -62,11 +53,6 @@ std::string CppMethodUnit::compile(unsigned int level) const {
 }
 
 CppPrintOperatorUnit::CppPrintOperatorUnit(const std::string& text) : m_text(text) {}
-
-
-std::string CppPrintOperatorUnit::generateShift(unsigned int level) const {
-    return std::string(level * 4, ' ');
-}
 
 std::string CppPrintOperatorUnit::compile(unsigned int level) const {
     return generateShift(level) + "std::cout << \"" + m_text + "\" << std::endl;\n";
