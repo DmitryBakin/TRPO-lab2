@@ -2,40 +2,38 @@
 #include "iostream"
 
 #include "ILanguageFactory.h"
-#include "cpp.h"
+#include "Cpp.h"
 #include "Java.h"
 #include "CSharp.h"
 
-std::string generateProgram(std::shared_ptr<ILanguageFactory> factory)
-{
+int main() {
+
+    // Создаем фабрику для C++
+    auto factory = std::make_shared<CppFactory>();
+
+    // Создаем класс с именем MyClass
     auto myClass = factory->createClassUnit("MyClass");
 
-    auto method1 = factory->createMethodUnit("testFunc1", "void", 3);
-    auto method2 = factory->createMethodUnit("testFunc2", "void", 2);
-    auto method3 = factory->createMethodUnit("testFunc3", "void", 4);
-    auto method4 = factory->createMethodUnit("testFunc4", "void", 1);
+    // Создаем void метод без модификаторов
+    auto method1 = factory->createMethodUnit("test_1", "void");
 
-    auto printOp = factory->createPrintOperatorUnit("Hello, world!\\n");
-    method4->add(printOp);
+    // Создаем метод с оператором печати
+    auto method2 = factory->createMethodUnit("test_2", "void");
+    auto print = factory->createPrintOperatorUnit("Hello, World!\\n");
 
-    myClass->add(method1, 0);
-    myClass->add(method2, 2);
-    myClass->add(method3, 4);
-    myClass->add(method4, 1);
+    method2->add(print);
 
-    return myClass->compile();
-}
+    // Создаем публичный метод
+    auto method3 = factory->createMethodUnit("test_3", "int", CppMethodUnit::STATIC);
 
 
-int main(int argc, char *argv[])
-{
-    QCoreApplication a(argc, argv);
+    // Добавляем методы в класс с разными модификаторами доступа
+    myClass->add(method1, CppClassUnit::PUBLIC);
+    myClass->add(method2, CppClassUnit::PRIVATE);
+    myClass->add(method3, CppClassUnit::PROTECTED);
 
-    std::cout << generateProgram(std::make_shared<CppFactory>()) << std::endl;
+    std::cout << myClass->compile();
 
-    std::cout << generateProgram(std::make_shared<JavaFactory>()) << std::endl;
+    return 0;
 
-    std::cout << generateProgram(std::make_shared<CSharpFactory>()) << std::endl;
-
-    return a.exec();
 }
