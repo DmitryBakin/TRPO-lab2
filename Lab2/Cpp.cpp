@@ -16,9 +16,9 @@ std::string CppClassUnit::compile(unsigned int level) const {
     std::string result = generateShift(level) + "class " + m_name + " {\n";
     for (size_t i = 0; i < ACCESS_MODIFIERS.size(); ++i) {
         if (m_fields[i].empty()) continue;
-        result += generateShift(level + 1) + ACCESS_MODIFIERS[i] + "\n";
+        result += generateShift(level) + ACCESS_MODIFIERS[i] + "\n";
         for (const auto& u : m_fields[i])
-            result += u->compile(level + 2);
+            result += u->compile(level + 1);
         result += "\n";
     }
     result += generateShift(level) + "};\n";
@@ -35,9 +35,13 @@ void CppMethodUnit::add(std::shared_ptr<Unit> unit, Flags) {
 std::string CppMethodUnit::compile(unsigned int level) const {
     std::string result = generateShift(level);
 
+    if ((m_flags & STATIC) && (m_flags & VIRTUAL)) {
+        throw std::runtime_error("C++: method cannot be both static and virtual");
+    }
+
     if (m_flags & STATIC)
         result += "static ";
-    else if (m_flags & VIRTUAL)
+    if (m_flags & VIRTUAL)
         result += "virtual ";
 
     result += m_returnType + " " + m_name + "()";

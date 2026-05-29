@@ -42,13 +42,18 @@ void JavaMethodUnit::add(std::shared_ptr<Unit> unit, Flags) {
 std::string JavaMethodUnit::compile(unsigned int level) const {
     std::string result;
 
+    if ((m_flags & STATIC) && (m_flags & ABSTRACT)) {
+        throw std::runtime_error("C#: method cannot be both virtual and abstract");
+    }
+    if ((m_flags & FINAL) && (m_flags & ABSTRACT)) {
+        throw std::runtime_error("C#: method cannot be both virtual and abstract");
+    }
+
     if (m_flags & ABSTRACT)
         result += "abstract ";
-    else if(m_flags & STATIC && m_flags & FINAL)
-        result += "static final ";
-    else if(m_flags & STATIC)
+    if(m_flags & STATIC)
         result += "static ";
-    else if(m_flags & FINAL)
+    if(m_flags & FINAL)
         result += "final ";
 
     result += m_returnType + " " + m_name + "()";
