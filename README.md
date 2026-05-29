@@ -26,10 +26,8 @@ C#: классы CSharpClassUnit, CSharpMethodUnit, CSharpPrintOperatorUnit и �
 
 Java: классы JavaClassUnit, JavaMethodUnit, JavaPrintOperatorUnit и фабрика JavaFactory.
 
-Клиентская функция generateProgram() принимает shared_ptr<ILanguageFactory> и через неё создаёт все необходимые элементы, не зная их конкретных типов.
-
 UML-диаграмма
-https://drive.google.com/file/d/1s-lPOXgO5WDjOSd7V-VREDnLNxjaC7Hp/view?usp=drive_link
+https://drive.google.com/file/d/1zchTpDYgBako0an-DbF4dUHhN0upuThm/view?usp=sharing
 
 ## 3.Инструкция пользователя
 
