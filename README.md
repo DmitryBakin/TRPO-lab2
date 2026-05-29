@@ -36,10 +36,7 @@ https://drive.google.com/file/d/1zchTpDYgBako0an-DbF4dUHhN0upuThm/view?usp=shari
 #include <QCoreApplication>
 #include "iostream"
 
-#include "ILanguageFactory.h"
 #include "Cpp.h"
-#include "Java.h"
-#include "CSharp.h"
 
 int main() {
 
@@ -101,10 +98,7 @@ class MyClass {
 #include <QCoreApplication>
 #include "iostream"
 
-#include "ILanguageFactory.h"
 #include "Cpp.h"
-#include "Java.h"
-#include "CSharp.h"
 
 int main() {
 
@@ -164,9 +158,6 @@ public:
 #include <QCoreApplication>
 #include "iostream"
 
-#include "ILanguageFactory.h"
-#include "Cpp.h"
-#include "Java.h"
 #include "CSharp.h"
 
 int main() {
@@ -190,12 +181,12 @@ int main() {
 
     auto method = factory->createMethodUnit("method", "void");
 
-    myClass->add(methodAbstract, CppClassUnit::PUBLIC);
-    myClass->add(methodVirtual, CppClassUnit::PRIVATE);
-    myClass->add(methodStatic, CppClassUnit::PROTECTED);
-    myClass->add(methodStaticVirtual, CppClassUnit::PRIVATE);
-    myClass->add(method, CppClassUnit::PUBLIC);
-    myClass->add(methodStaticAbstract, CppClassUnit::PROTECTED);
+    myClass->add(methodAbstract, CSharpClassUnit::PUBLIC);
+    myClass->add(methodVirtual, CSharpClassUnit::PRIVATE);
+    myClass->add(methodStatic, CSharpClassUnit::PROTECTED);
+    myClass->add(methodStaticVirtual, CSharpClassUnit::PRIVATE);
+    myClass->add(method, CSharpClassUnit::PUBLIC);
+    myClass->add(methodStaticAbstract, CSharpClassUnit::PROTECTED);
 
     std::cout << myClass->compile();
 
@@ -226,10 +217,7 @@ class MyClass
 #include <QCoreApplication>
 #include "iostream"
 
-#include "ILanguageFactory.h"
-#include "Cpp.h"
 #include "Java.h"
-#include "CSharp.h"
 
 int main() {
 
@@ -250,11 +238,11 @@ int main() {
 
     auto method = factory->createMethodUnit("method", "void");
 
-    myClass->add(methodAbstract, CppClassUnit::PUBLIC);
-    myClass->add(methodFinal, CppClassUnit::PRIVATE);
-    myClass->add(methodStatic, CppClassUnit::PROTECTED);
-    myClass->add(methodStaticFinal, CppClassUnit::PRIVATE);
-    myClass->add(method, CppClassUnit::PUBLIC);
+    myClass->add(methodAbstract, JavaClassUnit::PUBLIC);
+    myClass->add(methodFinal, JavaClassUnit::PRIVATE);
+    myClass->add(methodStatic, JavaClassUnit::PROTECTED);
+    myClass->add(methodStaticFinal, JavaClassUnit::PRIVATE);
+    myClass->add(method, JavaClassUnit::PUBLIC);
 
     std::cout << myClass->compile();
 
