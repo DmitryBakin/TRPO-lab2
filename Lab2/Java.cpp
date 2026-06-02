@@ -35,7 +35,7 @@ std::string JavaClassUnit::compile(unsigned int level) const {
 JavaMethodUnit::JavaMethodUnit(const std::string& name, const std::string& returnType, Flags flags)
     : m_name(name), m_returnType(returnType), m_flags(flags) {}
 
-void JavaMethodUnit::add(std::shared_ptr<Unit> unit, Flags) {
+void JavaMethodUnit::add(std::shared_ptr<Unit> unit) {
     m_body.push_back(unit);
 }
 
