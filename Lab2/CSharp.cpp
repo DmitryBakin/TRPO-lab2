@@ -38,7 +38,7 @@ std::string CSharpClassUnit::compile(unsigned int level) const {
 CSharpMethodUnit::CSharpMethodUnit(const std::string& name, const std::string& returnType, Flags flags)
     : m_name(name), m_returnType(returnType), m_flags(flags) {}
 
-void CSharpMethodUnit::add(std::shared_ptr<Unit> unit, Flags) {
+void CSharpMethodUnit::add(std::shared_ptr<Unit> unit) {
     m_body.push_back(unit);
 }
 

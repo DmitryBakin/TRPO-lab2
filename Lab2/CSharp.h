@@ -23,7 +23,7 @@ public:
 
     CSharpMethodUnit(const std::string& name, const std::string& returnType, Flags flags = 0);
 
-    void add(std::shared_ptr<Unit> unit, Flags flags = 0) override;
+    void add(std::shared_ptr<Unit> unit) override;
     std::string compile(unsigned int level = 0) const override;
 
 private:

@@ -27,7 +27,7 @@ class IMethodUnit : public Unit
 {
 public:
     virtual ~IMethodUnit() = default;
-    virtual void add(std::shared_ptr<Unit> unit, Flags flags = 0) = 0;
+    virtual void add(std::shared_ptr<Unit> unit) = 0;
 };
 
 class IPrintOperatorUnit : public Unit {};
