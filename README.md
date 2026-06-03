@@ -36,7 +36,10 @@ https://drive.google.com/file/d/1zchTpDYgBako0an-DbF4dUHhN0upuThm/view?usp=shari
 #include <QCoreApplication>
 #include "iostream"
 
-#include "Cpp.h"
+#include "CppFactory.h"
+#include "CppClassUnit.h"
+#include "CppMethodUnit.h"
+#include "CppPrintOperatorUnit.h"
 
 int main() {
 
@@ -98,7 +101,10 @@ class MyClass {
 #include <QCoreApplication>
 #include "iostream"
 
-#include "Cpp.h"
+#include "CppFactory.h"
+#include "CppClassUnit.h"
+#include "CppMethodUnit.h"
+#include "CppPrintOperatorUnit.h"
 
 int main() {
 
@@ -158,7 +164,10 @@ public:
 #include <QCoreApplication>
 #include "iostream"
 
-#include "CSharp.h"
+#include "CSharpFactory.h"
+#include "CSharpClassUnit.h"
+#include "CSharpMethodUnit.h"
+#include "CSharpPrintOperatorUnit.h"
 
 int main() {
 
@@ -217,7 +226,10 @@ class MyClass
 #include <QCoreApplication>
 #include "iostream"
 
-#include "Java.h"
+#include "JavaFactory.h"
+#include "JavaClassUnit.h"
+#include "JavaMethodUnit.h"
+#include "JavaPrintOperatorUnit.h"
 
 int main() {
 

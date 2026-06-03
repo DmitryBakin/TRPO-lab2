@@ -1,9 +1,20 @@
 #include <QCoreApplication>
 #include "iostream"
 
-#include "Cpp.h"
-#include "Java.h"
-#include "CSharp.h"
+#include "CppFactory.h"
+#include "CppClassUnit.h"
+#include "CppMethodUnit.h"
+#include "CppPrintOperatorUnit.h"
+
+#include "CSharpFactory.h"
+#include "CSharpClassUnit.h"
+#include "CSharpMethodUnit.h"
+#include "CSharpPrintOperatorUnit.h"
+
+#include "JavaFactory.h"
+#include "JavaClassUnit.h"
+#include "JavaMethodUnit.h"
+#include "JavaPrintOperatorUnit.h"
 
 int main() {
 
