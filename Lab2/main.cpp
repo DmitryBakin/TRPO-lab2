@@ -24,7 +24,8 @@ int main() {
 
     auto methodStaticConst = factory->createMethodUnit("methodStaticConst", "void", CppMethodUnit::STATIC | CppMethodUnit::CONST);
 
-    auto methodVirtual = factory->createMethodUnit("methodVirtual", "void", CppMethodUnit::VIRTUAL);
+    auto methodVirtual = factory->createMethodUnit("methodVirtual", "void", CppMethodUnit::VIRTUAL | CppMethodUnit::STATIC);
+
     auto print = factory->createPrintOperatorUnit("Hello, World!\\n");
 
     methodVirtual->add(print);
@@ -41,7 +42,15 @@ int main() {
     myClass->add(methodConst, CppClassUnit::PRIVATE);
     myClass->add(method, CppClassUnit::PUBLIC);
 
-    std::cout << "C++:\n" << myClass->compile() << std::endl;
+    try
+    {
+        std::cout << "C++:\n" << myClass->compile() << std::endl;
+    }
+    catch (const std::runtime_error& e)
+    {
+        std::cerr  << e.what() << std::endl;
+        return 1;
+    }
 
 
 
@@ -71,9 +80,15 @@ int main() {
     CSmyClass->add(CSmethod, CSharpClassUnit::PUBLIC);
     CSmyClass->add(CSmethodStaticAbstract, CSharpClassUnit::PROTECTED);
 
-    std::cout << "\nC#:\n" << CSmyClass->compile() << std::endl;
-
-
+    try
+    {
+        std::cout << "\nC#:\n" << CSmyClass->compile() << std::endl;
+    }
+    catch (const std::runtime_error& e)
+    {
+        std::cerr  << e.what() << std::endl;
+        return 1;
+    }
 
     auto Jfactory = std::make_shared<JavaFactory>();
 
@@ -98,7 +113,15 @@ int main() {
     JmyClass->add(JmethodStaticFinal, JavaClassUnit::PRIVATE);
     JmyClass->add(Jmethod, JavaClassUnit::PUBLIC);
 
-    std::cout << "\nJava:\n" <<JmyClass->compile() << std::endl;
+    try
+    {
+        std::cout << "\nJava:\n" << JmyClass->compile() << std::endl;
+    }
+    catch (const std::runtime_error& e)
+    {
+        std::cerr  << e.what() << std::endl;
+        return 1;
+    }
 
     return 0;
 
